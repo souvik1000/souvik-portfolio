@@ -23,4 +23,5 @@ const thunks = {
     },
 };
 
-export default { ...actions, ...thunks };
+const exportedObject = { ...actions, ...thunks };
+export default exportedObject;

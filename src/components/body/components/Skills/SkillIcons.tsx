@@ -33,16 +33,13 @@ import {
     SiPostman,
     SiJira,
     SiOpenai,
-    SiFigma,
     SiTailwindcss,
     SiSass,
     SiGoogle, // For Gemini
-    SiPnpm,
-    SiTurborepo,
     SiN8N,
     SiNpm,
 } from "react-icons/si";
-import { VscAzure, VscCode, VscJson, VscDebugAlt } from "react-icons/vsc";
+import { VscAzure, VscJson, VscDebugAlt } from "react-icons/vsc";
 import { MdArchitecture, MdSpeed, MdAccessibility, MdCode, MdBuild } from "react-icons/md";
 import { RiRobot2Line, RiTerminalBoxLine, RiTeamLine } from "react-icons/ri";
 
