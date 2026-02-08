@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Skill from "./components/Skill";
 import MySelf from "./components/Myself";
-import Contact from "./components/Contact";
+import Skills from "./components/Skills";
+import Particles from "src/utils/Particles";
 import Projects from "./components/Projects";
 import { IReducerState } from "src/reducers";
-import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Experience from "./components/Experience/V2";
 
 type IStateProps = ReturnType<typeof mapStateToProps>;
 
@@ -24,8 +25,8 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
       case "Project":
         return <Projects />;
       case "Skill":
-        return <Skill />;
-      case "Feedback":
+        return <Skills />;
+      case "Contact":
         return <Contact />;
       default:
         window.history.pushState(null, "", BASE_URL);
@@ -33,7 +34,12 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
     }
   };
 
-  return getRenderedComponentOnType();
+  return (
+    <div style={{ paddingTop: "80px" }}>
+      <Particles />
+      {getRenderedComponentOnType()}
+    </div>
+  );
 };
 
 const mapStateToProps = (state: IReducerState) => {

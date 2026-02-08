@@ -1,5 +1,4 @@
 import Stack from "src/utils/Stack";
-import styled from "styled-components";
 import CompanyTemplate from "./CompanyTemplate";
 
 const Experience = () => {
@@ -16,7 +15,7 @@ const Experience = () => {
       style={{
         width: "100%",
         display: "flex",
-        minHeight: "91vh",
+        minHeight: "85vh",
         alignItems: "center",
         flexDirection: "row",
       }}
@@ -40,11 +39,11 @@ const Experience = () => {
             employer={{
               name: "Innovaccer Analytics Private Ltd.",
               joined: "09/2021",
-              leaved: "Present",
+              leaved: "04/2023",
               location: "Noida, India",
               profileURL: "https://innovaccer.com/",
               description: `It is a health cloud company dedicated to accelerating innovation
-              in healthcare to connect and curate the world’s healthcare
+              in healthcare to connect and curate the world's healthcare
               information.`,
             }}
             responsibilities={currentResponsibilities}
