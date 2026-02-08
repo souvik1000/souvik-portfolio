@@ -37,7 +37,7 @@ const Container = styled.div`
   box-sizing: border-box;
   min-height: 90vh;
   padding: 40px 20px;
-  background-color: #000000; /* Black background */
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +57,7 @@ const SectionTitle = styled.h2`
     display: block;
     width: 60px;
     height: 3px;
-    background: #4db5ff; /* Accent color or white */
+    background: #4db5ff;
     margin: 8px auto 0;
   }
 `;
