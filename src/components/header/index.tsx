@@ -1,10 +1,14 @@
+import React from "react";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { bindActionCreators, Dispatch } from "redux";
 import styled, { keyframes } from "styled-components";
 
-import * as ResumeDownloadAPI from "src/interfaces/api/downloadResume";
 import MenuList from "./MenuList";
 import Stack from "src/utils/Stack";
-import React from "react";
 import { useOutsideClick } from "src/hooks/useOutsideClick";
+import { actions as menuActions } from "src/reducers/menuList";
+import * as ResumeDownloadAPI from "src/interfaces/api/downloadResume";
 import { ReactComponent as DownloadIcon } from "./components/assets/download.svg";
 
 const FixedContainer = styled.div`
@@ -90,18 +94,28 @@ const Links = styled.a`
   }
 `;
 
-const Header = () => {
+interface IDispatchProps {
+  updateSelectedMenuOption: typeof menuActions.updateSelectedMenuOptionAsync;
+}
+
+const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
   const personalEmail = process.env.REACT_APP_PERSONAL_EMAIL;
+  const navigate = useNavigate();
   const contactRef = React.useRef(null);
   const [showContacts, setShowContacts] = React.useState(false);
 
   useOutsideClick(contactRef, () => setShowContacts(false));
 
+  const handleLogoClick = () => {
+    navigate("/");
+    updateSelectedMenuOption("About");
+  };
+
   return (
     <FixedContainer>
       <HeaderWrapper>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <Logo src="./MyName.png" />
+          <Logo loading="lazy" src="./MyName.png" alt="Page Logo" onClick={handleLogoClick} style={{ cursor: "pointer" }} />
           <MenuList />
         </div>
         {/* <div style={{ cursor: "pointer" }}>HIRE ME</div> */}
@@ -123,7 +137,7 @@ const Header = () => {
                     width="22"
                     height="22"
                     title={`Gmail: ${personalEmail}`}
-                    alt="gmail"
+                    alt="Gmail icon"
                   />
                 </Links>
                 <Links
@@ -137,7 +151,7 @@ const Header = () => {
                     width="19"
                     height="19"
                     title="LinkedIn: Souvik Ghosh"
-                    alt="linkedIn"
+                    alt="LinkedIn icon"
                   />
                 </Links>
                 <Links href="https://github.com/souvik1000" target={"_blank"}>
@@ -147,7 +161,7 @@ const Header = () => {
                     width="24"
                     height="24"
                     title="Github: @souvik1000"
-                    alt="github"
+                    alt="Github icon"
                   />
                 </Links>
                 <Links
@@ -160,7 +174,7 @@ const Header = () => {
                     width="25"
                     height="25"
                     title="Codesandbox: Souvik Ghosh"
-                    alt="codesandbox"
+                    alt="Codesandbox icon"
                   />
                 </Links>
               </Stack>
@@ -176,4 +190,12 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      updateSelectedMenuOption: menuActions.updateSelectedMenuOptionAsync,
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(Header);

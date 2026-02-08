@@ -153,7 +153,7 @@ const HorizontalTimeline: React.FC<IProps> = ({ options, ...otherProps }) => {
 
   const setActiveItems = (totalLength: number, targetOptionIndex: number) => {
     const activeProgess = (100 / (totalLength - 1)) * targetOptionIndex || 3;
-    const listElement = Array.from(Array(totalLength).keys()); // In ES6, from() & keys() methods
+    const listElement = Array.from(Array(totalLength).keys());
 
     const selectedOptions = listElement
       .filter((option) => option <= targetOptionIndex)

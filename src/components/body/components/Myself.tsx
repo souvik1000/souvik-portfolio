@@ -68,7 +68,7 @@ const MySelf = () => {
           margin: "auto",
         }}
       >
-        <Image src="Souvik.jpg" />
+        <Image src="Souvik.jpg" alt="Souvik Ghosh's pic" />
       </div>
     </div>
   );

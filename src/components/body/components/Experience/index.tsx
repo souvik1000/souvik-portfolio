@@ -1,5 +1,4 @@
 import Stack from "src/utils/Stack";
-import styled from "styled-components";
 import CompanyTemplate from "./CompanyTemplate";
 
 const Experience = () => {

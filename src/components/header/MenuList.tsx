@@ -3,10 +3,6 @@ import MenuOption, { MenuOptionType } from "./MenuOption";
 
 const menuList: MenuOptionType[] = [
   {
-    type: "About",
-    displayString: "ME",
-  },
-  {
     type: "Work",
     displayString: "EXPERIENCE",
   },

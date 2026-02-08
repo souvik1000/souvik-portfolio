@@ -5,6 +5,8 @@ import {
     FaHtml5,
     FaCss3Alt,
     FaGitAlt,
+    FaGithub,
+    FaGitlab,
     FaAws,
     FaDocker,
     FaPython,
@@ -88,6 +90,8 @@ export const getIcon = (topic: string) => {
     if (t.includes("mysql") || t.includes("sql")) return SiMysql;
 
     // DevOps/Git
+    if (t.includes("github")) return FaGithub;
+    if (t.includes("gitlab")) return FaGitlab;
     if (t.includes("git")) return FaGitAlt;
     if (t.includes("aws")) return FaAws;
     if (t.includes("docker")) return FaDocker;
