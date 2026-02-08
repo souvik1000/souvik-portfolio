@@ -39,11 +39,11 @@ const Experience = () => {
             employer={{
               name: "Innovaccer Analytics Private Ltd.",
               joined: "09/2021",
-              leaved: "Present",
+              leaved: "04/2023",
               location: "Noida, India",
               profileURL: "https://innovaccer.com/",
               description: `It is a health cloud company dedicated to accelerating innovation
-              in healthcare to connect and curate the world’s healthcare
+              in healthcare to connect and curate the world's healthcare
               information.`,
             }}
             responsibilities={currentResponsibilities}
