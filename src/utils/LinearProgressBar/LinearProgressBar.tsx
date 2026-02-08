@@ -46,16 +46,17 @@ export interface IProps {
   topic: string;
   percentage: number | string;
   color?: string;
+  showPercentage?: boolean
 }
 
-const LinearProgressBar: React.FC<IProps> = ({ color, topic, percentage }) => {
+const LinearProgressBar: React.FC<IProps> = ({ color, topic, percentage, showPercentage }) => {
   return (
     <ProgressBarWrapper>
       <Title>{topic}</Title>
       <ProgressBar>
         <Progressed width={percentage} color={color} />
       </ProgressBar>
-      <Percentage width={percentage}>{`${percentage}%`}</Percentage>
+      {showPercentage && <Percentage width={percentage}>{`${percentage}%`}</Percentage>}
     </ProgressBarWrapper>
   );
 };

@@ -16,7 +16,7 @@ const Experience = () => {
       style={{
         width: "100%",
         display: "flex",
-        minHeight: "91vh",
+        minHeight: "85vh",
         alignItems: "center",
         flexDirection: "row",
       }}

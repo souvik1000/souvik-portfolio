@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Skill from "./components/Skill";
 import MySelf from "./components/Myself";
+import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import { IReducerState } from "src/reducers";
@@ -24,7 +24,7 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
       case "Project":
         return <Projects />;
       case "Skill":
-        return <Skill />;
+        return <Skills />;
       case "Feedback":
         return <Contact />;
       default:
@@ -33,7 +33,11 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
     }
   };
 
-  return getRenderedComponentOnType();
+  return (
+    <div style={{ paddingTop: "80px" }}>
+      {getRenderedComponentOnType()}
+    </div>
+  );
 };
 
 const mapStateToProps = (state: IReducerState) => {

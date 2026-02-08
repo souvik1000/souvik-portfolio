@@ -15,34 +15,33 @@ import "src/components/body/components/styles/particleStyle/index.scss";
 
 const Error = styled.p``;
 const Input = styled.input``;
-const MailIcon = styled.span``;
+const MailIcon = styled.span`
+  color: #000;
+  font-size: 18px;
+  padding: 2px 4px;
+  background-color: #f2f2f2;
+`;
 const MailBody = styled.textarea``;
 const SubjectInput = styled.input``;
 const SendMailButton = styled.button``;
 
 const EMailForm = styled.div`
-  // margin: 16px 0px;
 `;
 
 const InputBox = styled.div`
-  ${Input} {
-    width: 50%;
-    height: 16px;
-    padding: 8px;
-    border: 1px solid;
-    border-radius: 4px;
-  }
+  flex: 1;
 
-  ${SubjectInput} {
-    width: 90%;
+  input {
+    width: 100%;
     height: 16px;
-    padding: 8px;
+    padding: 20px;
     border: 1px solid;
     border-radius: 4px;
+    box-sizing: border-box;
   }
 
   ${MailBody} {
-    width: 90%;
+    width: 97%;
     padding: 8px;
     resize: vertical;
     border: 1px solid;
@@ -55,12 +54,12 @@ const InputBox = styled.div`
     margin: 0px;
     margin-top: 8px;
     color: #ff3333;
-    font-size: 8px;
+    font-size: 10px;
   }
 `;
 
 const SendMail = styled.div`
-  width: 93%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -70,15 +69,13 @@ const SendMail = styled.div`
     color: #000;
     padding: 2px;
     display: flex;
-    border-radius: 5px;
+    padding: 6px 12px;
+    border-radius: 25px;
     align-items: center;
     background-color: #f2f2f2;
 
     ${MailIcon} {
-      color: #000;
-      font-size: 18px;
-      padding: 2px 4px;
-      background-color: #f2f2f2;
+      
     }
   }
 `;
@@ -145,7 +142,7 @@ const Contact: React.FC<IReduxProps> = ({
     <div
       style={{
         width: "100%",
-        height: "91vh",
+        height: "85vh",
         display: "flex",
         overflow: "hidden",
         alignItems: "center",
@@ -158,38 +155,40 @@ const Contact: React.FC<IReduxProps> = ({
           <EMailForm>
             <form ref={mailForm} onSubmit={formik.handleSubmit}>
               <Stack margin={12} direction="column">
-                <InputBox>
-                  <label htmlFor="from_name" />
-                  <Input
-                    type="text"
-                    id="from_name"
-                    name="from_name"
-                    autoComplete="off"
-                    placeholder="Your name*"
-                    onChange={(e) => {
-                      debouncedChangeHandler("from_name", e.target.value);
-                    }}
-                  />
-                  {formikErrorChecker("from_name") && (
-                    <Error>{formik.errors.from_name}</Error>
-                  )}
-                </InputBox>
-                <InputBox>
-                  <label htmlFor="reply_to" />
-                  <Input
-                    type="text"
-                    id="reply_to"
-                    name="reply_to"
-                    autoComplete="off"
-                    placeholder="Your email*"
-                    onChange={(e) => {
-                      debouncedChangeHandler("reply_to", e.target.value);
-                    }}
-                  />
-                  {formikErrorChecker("reply_to") && (
-                    <Error>{formik.errors.reply_to}</Error>
-                  )}
-                </InputBox>
+                <Stack margin={12} direction="row">
+                  <InputBox>
+                    <label htmlFor="from_name" />
+                    <Input
+                      type="text"
+                      id="from_name"
+                      name="from_name"
+                      autoComplete="off"
+                      placeholder="Your name*"
+                      onChange={(e) => {
+                        debouncedChangeHandler("from_name", e.target.value);
+                      }}
+                    />
+                    {formikErrorChecker("from_name") && (
+                      <Error>{formik.errors.from_name}</Error>
+                    )}
+                  </InputBox>
+                  <InputBox>
+                    <label htmlFor="reply_to" />
+                    <Input
+                      type="text"
+                      id="reply_to"
+                      name="reply_to"
+                      autoComplete="off"
+                      placeholder="Your email*"
+                      onChange={(e) => {
+                        debouncedChangeHandler("reply_to", e.target.value);
+                      }}
+                    />
+                    {formikErrorChecker("reply_to") && (
+                      <Error>{formik.errors.reply_to}</Error>
+                    )}
+                  </InputBox>
+                </Stack>
                 <InputBox>
                   <label htmlFor="subject" />
                   <SubjectInput

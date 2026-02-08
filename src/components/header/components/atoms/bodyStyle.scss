@@ -1,0 +1,29 @@
+$border-color: #fff;
+$border-thickness: 2px;
+$hover-gap: 4px;
+$gradient-config: #000 25%, #{$border-color} 0;
+
+.menu-option {
+  user-select: none;
+  padding: calc(#{$hover-gap} + #{$border-thickness});
+
+  background: conic-gradient(
+      from 180deg at top #{$border-thickness} right #{$border-thickness},
+      $gradient-config
+    )
+    var(--animation-state, 200%) 0 / 200% var(--animation-state, #{$border-thickness}) no-repeat,
+  conic-gradient(at bottom #{$border-thickness} left #{$border-thickness}, $gradient-config) 0
+    var(--animation-state, 200%) / var(--animation-state, #{$border-thickness}) 200% no-repeat;
+  
+  transition: 0.3s, background-position 0.3s 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    --animation-state: 100%;
+    transition: 0.3s, background-size 0.3s 0.3s;
+  }
+
+  &.active {
+    background: #333;
+  }
+}

@@ -101,12 +101,12 @@ const ProjectDescription: React.FC<IProps> = ({
           <Stack margin={12}>
             {project && (
               <a href={project.url || "#"} target="_blank">
-                <img src="github.svg" />
+                <img loading="lazy" src="github.svg" />
               </a>
             )}
             {hosted && (
               <a href={hosted.url || "#"} target="_blank">
-                <img src="link.svg" />
+                <img loading="lazy" src="link.svg" />
               </a>
             )}
           </Stack>

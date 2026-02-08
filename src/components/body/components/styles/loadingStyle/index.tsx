@@ -5,9 +5,10 @@ import CircularProgressBar, {
 
 interface IProps {
   options: CircularProgressBarProps[];
+  showPercentage?: boolean;
 }
 
-const LoadingStyle: React.FC<IProps> = ({ options }) => {
+const LoadingStyle: React.FC<IProps> = ({ options, showPercentage }) => {
   return (
     <div
       style={{
@@ -22,6 +23,7 @@ const LoadingStyle: React.FC<IProps> = ({ options }) => {
           key={index}
           topic={value.topic}
           percentage={value.percentage}
+          showPercentage={showPercentage}
         />
       ))}
     </div>
