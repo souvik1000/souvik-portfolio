@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { IReducerState } from "src/reducers";
 import { actions } from "src/reducers/menuList";
 import { MenuTypes } from "src/reducers/menuList/reducer";
+import styled from "styled-components";
 import BorderStyle from "./components/atoms/BorderStyle";
 
 type IStateProps = ReturnType<typeof mapStateToProps>;
@@ -19,13 +20,22 @@ interface IProps extends IReduxProps {
   menuOptions: MenuOptionType[];
 }
 
-const MenuOption: React.FC<IProps> = ({
+const MenuContainer = styled.div<{ isMobile?: boolean }>`
+  display: flex;
+  flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
+  gap: ${(props) => (props.isMobile ? "20px" : "12px")};
+  align-items: ${(props) => (props.isMobile ? "center" : "flex-start")};
+  width: ${(props) => (props.isMobile ? "100%" : "auto")};
+`;
+
+const MenuOption: React.FC<IProps & { isMobile?: boolean }> = ({
   selectedMenu,
   menuOptions,
   updateMenuOption,
+  isMobile,
 }) => {
   return (
-    <>
+    <MenuContainer isMobile={isMobile}>
       {menuOptions.map((menuOption, index) => {
         const { type, displayString } = menuOption;
         return (
@@ -38,7 +48,7 @@ const MenuOption: React.FC<IProps> = ({
           </BorderStyle>
         );
       })}
-    </>
+    </MenuContainer>
   );
 };
 

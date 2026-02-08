@@ -15,11 +15,18 @@ const ExperienceContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 60px;
+  font-size: 32px;
+  margin-bottom: 20px;
   font-size: 2.5rem;
   color: #f0f0f0;
-  position: relative;
+  position: sticky;
+  top: 76px;
+  z-index: 20;
+  padding: 20px 0;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  text-align: center;
+  border-radius: 0 0 16px 16px;
 
   &:after {
     content: "";
@@ -88,9 +95,9 @@ const Dot = styled.div`
 const ContentWrapper = styled.div<{ align: 'left' | 'right' }>`
   width: 45%;
   ${props => props.align === 'left' ?
-        'margin-right: auto; display: flex; justify-content: flex-end;' :
-        'margin-left: auto; display: flex; justify-content: flex-start;'
-    }
+    'margin-right: auto; display: flex; justify-content: flex-end;' :
+    'margin-left: auto; display: flex; justify-content: flex-start;'
+  }
   
   @media (max-width: 768px) {
     width: 90%;
@@ -103,21 +110,21 @@ const ContentWrapper = styled.div<{ align: 'left' | 'right' }>`
 `;
 
 const ExperienceV2 = () => {
-    return (
-        <ExperienceContainer>
-            <Title>Experience</Title>
-            <TimelineWrapper>
-                {experienceList.map((data, index) => (
-                    <TimelineItem key={index}>
-                        <Dot />
-                        <ContentWrapper align={index % 2 === 0 ? 'left' : 'right'}>
-                            <ExperienceCard {...data} />
-                        </ContentWrapper>
-                    </TimelineItem>
-                ))}
-            </TimelineWrapper>
-        </ExperienceContainer>
-    );
+  return (
+    <ExperienceContainer>
+      <Title>Experience</Title>
+      <TimelineWrapper>
+        {experienceList.map((data, index) => (
+          <TimelineItem key={index}>
+            <Dot />
+            <ContentWrapper align={index % 2 === 0 ? 'left' : 'right'}>
+              <ExperienceCard {...data} />
+            </ContentWrapper>
+          </TimelineItem>
+        ))}
+      </TimelineWrapper>
+    </ExperienceContainer>
+  );
 };
 
 export default ExperienceV2;

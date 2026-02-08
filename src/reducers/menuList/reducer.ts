@@ -7,7 +7,7 @@ export type MenuTypes =
   | "Project"
   | "Work"
   | "Skill"
-  | "Feedback"
+  | "Contact"
   | null;
 
 export interface IReducerState {

@@ -15,16 +15,16 @@ const menuList: MenuOptionType[] = [
     displayString: "SKILLS",
   },
   {
-    type: "Feedback",
-    displayString: "FEEDBACK",
+    type: "Contact",
+    displayString: "CONTACT",
   },
 ];
 
-const MenuList = () => {
+const MenuList = ({ isMobile }: { isMobile?: boolean }) => {
 
   return (
-    <Stack margin={16} direction="row">
-      <MenuOption menuOptions={menuList} />
+    <Stack margin={16} direction={isMobile ? "column" : "row"}>
+      <MenuOption menuOptions={menuList} isMobile={isMobile} />
     </Stack>
   );
 };

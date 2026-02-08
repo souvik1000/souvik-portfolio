@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 
 import MySelf from "./components/Myself";
 import Skills from "./components/Skills";
-import Contact from "./components/Contact";
+import Particles from "src/utils/Particles";
 import Projects from "./components/Projects";
 import { IReducerState } from "src/reducers";
+import Contact from "./components/Contact";
 import Experience from "./components/Experience/V2";
 
 type IStateProps = ReturnType<typeof mapStateToProps>;
@@ -25,7 +26,7 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
         return <Projects />;
       case "Skill":
         return <Skills />;
-      case "Feedback":
+      case "Contact":
         return <Contact />;
       default:
         window.history.pushState(null, "", BASE_URL);
@@ -35,6 +36,7 @@ const Body: React.FC<IReduxProps> = ({ selectedType }) => {
 
   return (
     <div style={{ paddingTop: "80px" }}>
+      <Particles />
       {getRenderedComponentOnType()}
     </div>
   );

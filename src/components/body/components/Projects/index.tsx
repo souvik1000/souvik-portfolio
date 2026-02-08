@@ -13,9 +13,17 @@ const ProjectsContainer = styled.div`
 
 const Title = styled.h2`
   font-size: 32px;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
   color: #f0f0f0;
+  position: sticky;
+  top: 76px;
+  z-index: 20;
+  padding: 20px 0;
+  width: 100%;
   text-align: center;
-  margin-bottom: 40px;
+  backdrop-filter: blur(5px);
+  border-radius: 0 0 16px 16px;
   
   span {
     color: #4db5ff;
