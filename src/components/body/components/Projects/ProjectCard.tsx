@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { FaGithub, FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
 
-import { ProjectData } from "./constants";
+import { ProjectData } from "./projectData";
 
 const Card = styled.div`
   backdrop-filter: blur(10px);
