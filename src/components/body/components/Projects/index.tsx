@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import ProjectCard from "./ProjectCard";
-import { projectData } from "./constants";
+import { projectData } from "./projectData";
 
 const ProjectsContainer = styled.div`
   width: 90%;

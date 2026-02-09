@@ -22,12 +22,12 @@ export const projectData: ProjectData[] = [
     started: "Jan 01, 2024",
     ended: "Jan 06, 2024",
     techstackList: [
-      "SCSS",
       "React",
-      "Formik",
-      "Chart.js",
-      "Ant Design",
       "TypeScript",
+      "Ant Design",
+      "Chart.js",
+      "Formik",
+      "SCSS",
     ],
     desciption:
       "It's a asset management software used for managing the company and rental assets. It will also helps in calculating the deprication values based on the life of that assets.",
@@ -41,7 +41,7 @@ export const projectData: ProjectData[] = [
     },
   },
   {
-    itemName: "My Portfolio",
+    itemName: "My Portfolio (Old)",
     projectName: "My Portfolio",
     started: "Jan 31, 2023",
     ended: "Feb 4, 2023",
@@ -55,11 +55,11 @@ export const projectData: ProjectData[] = [
     desciption:
       "It's a portfolio website, which will express my experience of more than 1 year and my passion side-by-side with my work. This portfolio is based on my profile and users are able to download my resume, contact me directly through email or LinkedIn, and also be able to contribute their valuable feedback at the end regarding my portfolios from this website itself.",
     project: {
-      url: "#",
+      url: "https://github.com/souvik1000/souvik-portfolio",
       site: "GITHUB",
     },
     hosted: {
-      url: "#",
+      url: "https://old.souvikghosh.info",
     },
   },
   {
