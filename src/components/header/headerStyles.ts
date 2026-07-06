@@ -52,7 +52,7 @@ const DesktopMenu = styled.div`
 
 const MobileMenuContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
-  top: 77px; 
+  top: 77px;
   left: 0;
   width: 100%;
   height: calc(100vh - 77px);
@@ -83,7 +83,7 @@ const Download = styled.div`
   align-items: center;
 `;
 
-const ResumeWrapper = styled.div`
+const ResumeWrapper = styled.a`
   padding: 4px 8px;
   border-radius: 25px;
   display: flex;
@@ -93,6 +93,8 @@ const ResumeWrapper = styled.div`
   border: 1px solid #000;
   transition: all ease 0.3s;
   cursor: pointer;
+  color: #fff;
+  text-decoration: none;
 
   &:hover {
     border: 1px solid #fff;

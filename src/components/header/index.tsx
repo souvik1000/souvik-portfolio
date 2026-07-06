@@ -8,7 +8,6 @@ import MenuList from "./MenuList";
 import Stack from "src/utils/Stack";
 import { useOutsideClick } from "src/hooks/useOutsideClick";
 import { actions as menuActions } from "src/reducers/menuList";
-import * as ResumeDownloadAPI from "src/interfaces/api/downloadResume";
 import { ReactComponent as DownloadIcon } from "./components/assets/download.svg";
 
 import {
@@ -53,7 +52,7 @@ const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
 
   const handleMenuClick = () => {
     setIsMobileMenuOpen(false);
-  }
+  };
 
   const renderSocialLinks = () => (
     <Stack margin={12} direction="row">
@@ -105,7 +104,7 @@ const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
         />
       </Links>
     </Stack>
-  )
+  );
 
   return (
     <FixedContainer>
@@ -132,14 +131,17 @@ const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
         <DesktopMenu>
           <Stack margin={16} style={{ display: "flex", alignItems: "center" }}>
             <ResumeWrapper
-              onClick={() => ResumeDownloadAPI.GET.service()}
+              href="https://souvik-resume.web.app"
+              target={"_blank"}
+              rel="noopener noreferrer"
             >
-              <Download><DownloadIcon /></Download> RESUME
+              <Download>
+                <DownloadIcon />
+              </Download>{" "}
+              RESUME
             </ResumeWrapper>
             {showContacts ? (
-              <div ref={contactRef}>
-                {renderSocialLinks()}
-              </div>
+              <div ref={contactRef}>{renderSocialLinks()}</div>
             ) : (
               <ContactMe onClick={() => setShowContacts(!showContacts)}>
                 CONTACT ME
@@ -154,23 +156,41 @@ const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
             <MenuList isMobile={true} />
           </div>
 
-          <Stack margin={20} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}>
+          <Stack
+            margin={20}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
             <ResumeWrapper
-              onClick={() => {
-                ResumeDownloadAPI.GET.service();
-                setIsMobileMenuOpen(false);
-              }}
+              href="https://souvik-resume.web.app"
+              target={"_blank"}
+              rel="noopener noreferrer"
             >
-              <Download><DownloadIcon /></Download> RESUME
+              <Download>
+                <DownloadIcon />
+              </Download>{" "}
+              RESUME
             </ResumeWrapper>
 
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-              <div style={{ color: "#fff", marginBottom: "10px" }}>Connect with me:</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <div style={{ color: "#fff", marginBottom: "10px" }}>
+                Connect with me:
+              </div>
               {renderSocialLinks()}
             </div>
           </Stack>
         </MobileMenuContainer>
-
       </HeaderWrapper>
     </FixedContainer>
   );
@@ -181,7 +201,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
     {
       updateSelectedMenuOption: menuActions.updateSelectedMenuOptionAsync,
     },
-    dispatch
+    dispatch,
   );
 
 export default connect(null, mapDispatchToProps)(Header);
