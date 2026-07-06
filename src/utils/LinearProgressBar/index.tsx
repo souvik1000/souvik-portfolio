@@ -5,9 +5,10 @@ import LinearProgressBar, {
 
 interface IProps {
   options: LinearProgressBarProps[];
+  showPercentage?: boolean;
 }
 
-const LinearProgressBarWithOptions: React.FC<IProps> = ({ options }) => {
+const LinearProgressBarWithOptions: React.FC<IProps> = ({ options, showPercentage }) => {
   return (
     <Stack
       margin={24}
@@ -24,6 +25,7 @@ const LinearProgressBarWithOptions: React.FC<IProps> = ({ options }) => {
           key={index}
           topic={value.topic}
           percentage={value.percentage}
+          showPercentage={showPercentage}
         />
       ))}
     </Stack>

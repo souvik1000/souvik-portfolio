@@ -7,7 +7,7 @@ export type MenuTypes =
   | "Project"
   | "Work"
   | "Skill"
-  | "Feedback"
+  | "Contact"
   | null;
 
 export interface IReducerState {
@@ -19,7 +19,7 @@ export interface IReducerState {
 const INITIAL_STATE: IReducerState = {
   error: false,
   loading: false,
-  selectedMenu: null || (window.location.pathname.split("/")[1] as MenuTypes),
+  selectedMenu: (window.location.pathname.split("/")[1] as MenuTypes) || null,
 };
 
 const reducer = reducerWithInitialState<IReducerState>(INITIAL_STATE)

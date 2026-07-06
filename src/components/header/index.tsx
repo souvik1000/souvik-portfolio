@@ -1,155 +1,207 @@
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { bindActionCreators, Dispatch } from "redux";
 
-import * as ResumeDownloadAPI from "src/interfaces/api/downloadResume";
 import MenuList from "./MenuList";
 import Stack from "src/utils/Stack";
-import React from "react";
 import { useOutsideClick } from "src/hooks/useOutsideClick";
+import { actions as menuActions } from "src/reducers/menuList";
+import { ReactComponent as DownloadIcon } from "./components/assets/download.svg";
 
-const HeaderWrapper = styled.div`
-  width: 90%;
-  margin: auto;
-  height: 50px;
-  display: flex;
-  padding: 8px;
-  font-size: 13px;
-  align-items: center;
-  justify-content: space-between;
-`;
+import {
+  FixedContainer,
+  HeaderWrapper,
+  Logo,
+  MobileIcon,
+  DesktopMenu,
+  MobileMenuContainer,
+  Download,
+  ResumeWrapper,
+  ContactMe,
+  Links,
+} from "./headerStyles";
 
-const Logo = styled.img`
-  width: 36px;
-  height: 36px;
-  padding-right: 8px;
-`;
+interface IDispatchProps {
+  updateSelectedMenuOption: typeof menuActions.updateSelectedMenuOptionAsync;
+}
 
-const downloadBottom = keyframes`
-    from{ transform: translateY(0px); }
-    to{transform: translateY(4px); }
-`;
-
-const Download = styled.div`
-  display: inline-block;
-`;
-
-const ResumeWrapper = styled.div`
-  padding: 4px 8px;
-  border-radius: 25px;
-  border: 1px solid #000;
-  transition: all ease 0.3s;
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid #fff;
-    ${Download} {
-      animation: ${downloadBottom} 1s linear 3;
-    }
-  }
-`;
-
-const ContactMe = styled.div`
-  padding: 4px 8px;
-  border-radius: 25px;
-  border: 1px solid #000;
-  transition: all ease 0.3s;
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid #fff;
-  }
-`;
-
-const Links = styled.a`
-  padding: 0px 4px;
-  padding-top: 4px;
-  border-radius: 25px;
-  border: 1px solid #000;
-  transition: all ease 0.3s;
-
-  &:hover {
-    border: 1px solid #fff;
-    transform: translateY(-4px);
-  }
-`;
-
-const Header = () => {
+const Header: React.FC<IDispatchProps> = ({ updateSelectedMenuOption }) => {
   const personalEmail = process.env.REACT_APP_PERSONAL_EMAIL;
+  const navigate = useNavigate();
   const contactRef = React.useRef(null);
   const [showContacts, setShowContacts] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+  const FaTimesIcon = FaTimes as any;
+  const FaBarsIcon = FaBars as any;
 
   useOutsideClick(contactRef, () => setShowContacts(false));
 
+  const handleLogoClick = () => {
+    navigate("/");
+    updateSelectedMenuOption("About");
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setShowContacts(false);
+  };
+
+  const handleMenuClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const renderSocialLinks = () => (
+    <Stack margin={12} direction="row">
+      <Links href={`mailto: ${personalEmail}`} target={"_blank"}>
+        <img
+          loading="lazy"
+          src="gmail.png"
+          width="22"
+          height="22"
+          title={`Gmail: ${personalEmail}`}
+          alt="Gmail icon"
+        />
+      </Links>
+      <Links
+        style={{ padding: "4px 6px 0px 6px" }}
+        href="https://www.linkedin.com/in/souvik1000/"
+        target={"_blank"}
+      >
+        <img
+          loading="lazy"
+          src="linkedIn.png"
+          width="19"
+          height="19"
+          title="LinkedIn: Souvik Ghosh"
+          alt="LinkedIn icon"
+        />
+      </Links>
+      <Links href="https://github.com/souvik1000" target={"_blank"}>
+        <img
+          loading="lazy"
+          src="github_white.png"
+          width="24"
+          height="24"
+          title="Github: @souvik1000"
+          alt="Github icon"
+        />
+      </Links>
+      <Links
+        href="https://codesandbox.io/dashboard/sandboxes/?workspace=8a261c9d-2efc-4cc7-bf48-4b5f03350f8c"
+        target={"_blank"}
+      >
+        <img
+          loading="lazy"
+          src="codesandbox.png"
+          width="25"
+          height="25"
+          title="Codesandbox: Souvik Ghosh"
+          alt="Codesandbox icon"
+        />
+      </Links>
+    </Stack>
+  );
+
   return (
-    <HeaderWrapper>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Logo src="./MyName.png" />
-        <MenuList />
-      </div>
-      {/* <div style={{ cursor: "pointer" }}>HIRE ME</div> */}
-      {/* Todo(Souvik): Make it as dropdown, with Download resume & contact */}
-      <Stack margin={16} style={{ display: "flex", alignItems: "center" }}>
-        <ResumeWrapper
-          style={{ cursor: "pointer" }}
-          onClick={() => ResumeDownloadAPI.GET.service()}
-        >
-          <Download>&#129095;</Download> RESUME
-        </ResumeWrapper>
-        {showContacts ? (
-          <div ref={contactRef}>
-            <Stack margin={12}>
-              <Links href={`mailto: ${personalEmail}`} target={"_blank"}>
-                <img
-                  src="gmail.png"
-                  width="22"
-                  height="22"
-                  title={`Gmail: ${personalEmail}`}
-                  alt="gmail"
-                />
-              </Links>
-              <Links
-                style={{ padding: "4px 6px 0px 6px" }}
-                href="https://www.linkedin.com/in/souvik1000/"
-                target={"_blank"}
-              >
-                <img
-                  src="linkedIn.png"
-                  width="19"
-                  height="19"
-                  title="LinkedIn: Souvik Ghosh"
-                  alt="linkedIn"
-                />
-              </Links>
-              <Links href="https://github.com/souvik1000" target={"_blank"}>
-                <img
-                  src="github_white.png"
-                  width="24"
-                  height="24"
-                  title="Github: @souvik1000"
-                  alt="github"
-                />
-              </Links>
-              <Links
-                href="https://codesandbox.io/dashboard/sandboxes/?workspace=8a261c9d-2efc-4cc7-bf48-4b5f03350f8c"
-                target={"_blank"}
-              >
-                <img
-                  src="codesandbox.png"
-                  width="25"
-                  height="25"
-                  title="Codesandbox: Souvik Ghosh"
-                  alt="codesandbox"
-                />
-              </Links>
-            </Stack>
+    <FixedContainer>
+      <HeaderWrapper>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Logo
+            loading="lazy"
+            src="./MyName.png"
+            alt="Page Logo"
+            onClick={handleLogoClick}
+            style={{ cursor: "pointer" }}
+          />
+          <DesktopMenu>
+            <MenuList />
+          </DesktopMenu>
+        </div>
+
+        {/* Mobile Hamburger Icon */}
+        <MobileIcon onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? <FaTimesIcon /> : <FaBarsIcon />}
+        </MobileIcon>
+
+        {/* Desktop Actions */}
+        <DesktopMenu>
+          <Stack margin={16} style={{ display: "flex", alignItems: "center" }}>
+            <ResumeWrapper
+              href="https://souvik-resume.web.app"
+              target={"_blank"}
+              rel="noopener noreferrer"
+            >
+              <Download>
+                <DownloadIcon />
+              </Download>{" "}
+              RESUME
+            </ResumeWrapper>
+            {showContacts ? (
+              <div ref={contactRef}>{renderSocialLinks()}</div>
+            ) : (
+              <ContactMe onClick={() => setShowContacts(!showContacts)}>
+                CONTACT ME
+              </ContactMe>
+            )}
+          </Stack>
+        </DesktopMenu>
+
+        {/* Mobile Menu Overlay */}
+        <MobileMenuContainer isOpen={isMobileMenuOpen}>
+          <div onClick={handleMenuClick}>
+            <MenuList isMobile={true} />
           </div>
-        ) : (
-          <ContactMe onClick={() => setShowContacts(!showContacts)}>
-            CONTACT ME
-          </ContactMe>
-        )}
-      </Stack>
-    </HeaderWrapper>
+
+          <Stack
+            margin={20}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <ResumeWrapper
+              href="https://souvik-resume.web.app"
+              target={"_blank"}
+              rel="noopener noreferrer"
+            >
+              <Download>
+                <DownloadIcon />
+              </Download>{" "}
+              RESUME
+            </ResumeWrapper>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <div style={{ color: "#fff", marginBottom: "10px" }}>
+                Connect with me:
+              </div>
+              {renderSocialLinks()}
+            </div>
+          </Stack>
+        </MobileMenuContainer>
+      </HeaderWrapper>
+    </FixedContainer>
   );
 };
 
-export default Header;
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    {
+      updateSelectedMenuOption: menuActions.updateSelectedMenuOptionAsync,
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(Header);

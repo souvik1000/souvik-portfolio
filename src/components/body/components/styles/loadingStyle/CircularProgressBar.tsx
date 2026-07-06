@@ -1,50 +1,55 @@
-import React from "react";
-import styled from "styled-components";
+import { FC, useEffect, useRef } from "react";
 
 import "./styles.css";
 
 export interface IProps {
-  percentage: number | string;
   topic: string;
+  percentage: number | string;
+  showPercentage?: boolean;
 }
 
-const forEach = (
-  array: NodeListOf<Element>,
-  callback: (value: Element, index: number) => void
-) => {
-  for (var i = 0; i < array.length; i++) {
-    callback(array[i], i);
-  }
-};
+const CircularProgressBar: FC<IProps> = ({ percentage, showPercentage, topic }) => {
+  const progressRef = useRef<SVGSVGElement>(null);
 
-const CircularProgressBar: React.FC<IProps> = ({ percentage, topic }) => {
-  // Bug: At the initial render it does it's work
-  // Todo(Souvik): Have to Fix this transition problem due to useEffect
-  React.useEffect(() => {
+  useEffect(() => {
     const perimeter = -219.99078369140625;
-    forEach(document.querySelectorAll(".progress"), (value) => {
+    const value = progressRef.current;
+
+    if (value) {
+      const fillElement = value.querySelector(".fill");
+      const valueElement = value.querySelector(".value");
       const percentString = value.getAttribute("data-progress");
-      if (percentString && value) {
-        //@ts-ignore: value showing element object possibly null
-        //Todo(Souvik): Have to fixed this typescript error
-        value.querySelector(".fill").setAttribute(
-          "style",
-          `stroke-dashoffset: 
-              ${((100 - parseInt(percentString)) / 100) * perimeter}
-          `
-        );
-        //@ts-ignore: value showing element object possibly null
-        //Todo(Souvik): Have to fixed this typescript error
-        value.querySelector(".value").innerHTML = percentString + "%";
+      const textElement: HTMLElement | null = value.querySelector(".text");
+
+      if (percentString) {
+        if (fillElement) {
+          fillElement.setAttribute(
+            "style",
+            `stroke-dashoffset: 
+                ${((100 - parseInt(percentString)) / 100) * perimeter}
+            `
+          );
+        }
+
+        if (showPercentage) {
+          if (valueElement) {
+            valueElement.innerHTML = percentString + "%";
+          }
+        } else {
+          if (textElement) {
+            textElement.style.fontSize = "8px";
+          }
+        }
       }
-    });
-  }, []);
+    }
+  }, [percentage, showPercentage]);
 
   return (
     <>
       <div className="wrapper-center">
         <div className="progress-bar">
           <svg
+            ref={progressRef}
             className="progress"
             data-progress={percentage}
             x="0px"
@@ -59,11 +64,20 @@ const CircularProgressBar: React.FC<IProps> = ({ percentage, topic }) => {
               className="fill"
               d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0"
             />
-            <text className="value" x="50%" y="45%">
-              0%
-            </text>
-            <text className="text" x="50%" y="65%">
-              {topic}
+            {
+              showPercentage &&
+              <text className="value" x="50%" y="45%">
+                0%
+              </text>
+            }
+            <text className="text" x="50%" y={showPercentage ? "65%" : "55%"}>
+              {topic.split(" ").map((t, i) => {
+                const topicLength = topic.split(" ").length;
+                const dy = topicLength > 1 ? (i === 0) ? `${-0.6 * (topicLength - 1)}em` : "1.2em" : "0";
+                return <tspan key={i} x="50%" dy={dy}>
+                  {t}
+                </tspan>
+              })}
             </text>
           </svg>
         </div>
