@@ -11,11 +11,84 @@ export interface ProjectData {
   };
   project?: {
     url: string;
-    site: "GITHUB" | "CODESANDBOX";
+    site: "GITHUB" | "CODESANDBOX" | "GITLAB";
   };
 }
-  
+
 export const projectData: ProjectData[] = [
+  {
+    itemName: "Zunifix UI",
+    projectName: "@zunifix/ui (Zunifix UI)",
+    started: "Feb 2026",
+    ended: "Present",
+    techstackList: [
+      "React",
+      "TypeScript",
+      "Storybook",
+      "NPM Registry",
+      "Tailwind CSS",
+      "BaseUI Library",
+    ],
+    desciption:
+      'A complete Storybook creation and design system project published to the NPM registry as "@zunifix/ui". Serves as the core UI library for Zunifix products, featuring highly reusable components and interactive playgrounds.',
+    hosted: {
+      url: "https://storybook.zunifix.com",
+    },
+    project: {
+      url: "https://gitlab.com/zenifyx/zunifix-ui",
+      site: "GITLAB",
+    },
+  },
+  {
+    itemName: "Spectrum Blog",
+    projectName: "Spectrum",
+    started: "Mar 2026",
+    ended: "Present",
+    techstackList: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "@zunifix/ui",
+      "CI/CD",
+      "GitLab CI",
+    ],
+    desciption:
+      'A blog application built with the "@zunifix/ui" design system. Phase 1 (deployed) covers auth, blogs & guest comments. Phase 2 adds community engagement (replies, mentions, reactions). Phase 3 will introduce an AI-assisted search Chatbot with direct citations.',
+    hosted: {
+      url: "https://spectrum.zunifix.com",
+    },
+    note: "Initial load/API calls may be slow (free tier cold starts).",
+    project: {
+      url: "https://gitlab.com/zenifyx/softwaretub/spectrum-fe",
+      site: "GITLAB",
+    },
+  },
+  {
+    itemName: "Live Performance Tracker",
+    projectName: "Live Performance Tracker Extension",
+    started: "Apr 2026",
+    ended: "Present",
+    techstackList: [
+      "JavaScript",
+      "Chrome Extension API",
+      "HTML5",
+      "CSS3",
+      "Web Vitals",
+    ],
+    desciption:
+      "A Chrome extension built to allow developers to live-track page performance, rendering speeds, and Core Web Vitals directly inside their browser window during product development.",
+    note: "Coming soon (planned development phase)",
+  },
+  {
+    itemName: "Job Referral Automator",
+    projectName: "Job Referral Automator Extension",
+    started: "Jun 2026",
+    ended: "Future",
+    techstackList: ["JavaScript", "Chrome Extension API"],
+    desciption:
+      "A planned Chrome extension designed to simplify requesting job referrals. Automatically handles sending personalized, targeted outreach emails directly to specific HR and technical professionals, offering a free alternative in a market dominated by paid tools.",
+    note: "Coming soon (planned requirements)",
+  },
   {
     itemName: "Asset Manager",
     projectName: "Asset Manager",
@@ -45,13 +118,7 @@ export const projectData: ProjectData[] = [
     projectName: "My Portfolio",
     started: "Jan 31, 2023",
     ended: "Feb 4, 2023",
-    techstackList: [
-      "ReactJs",
-      "Redux",
-      "TypeScript",
-      "Formik",
-      "EmailJs",
-    ],
+    techstackList: ["ReactJs", "Redux", "TypeScript", "Formik", "EmailJs"],
     desciption:
       "It's a portfolio website, which will express my experience of more than 1 year and my passion side-by-side with my work. This portfolio is based on my profile and users are able to download my resume, contact me directly through email or LinkedIn, and also be able to contribute their valuable feedback at the end regarding my portfolios from this website itself.",
     project: {
