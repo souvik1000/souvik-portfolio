@@ -1,6 +1,11 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import styled from "styled-components";
-import { FaGithub, FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaInfoCircle,
+  FaGitlab,
+} from "react-icons/fa";
 
 import { ProjectData } from "./projectData";
 
@@ -71,6 +76,24 @@ const Description = styled.p`
   flex-grow: 1; /* Pushes content down to align footer if needed */
 `;
 
+const CodeHighlight = styled.code`
+  background: rgba(77, 181, 255, 0.1);
+  border: 1px solid rgba(77, 181, 255, 0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  color: #4db5ff;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 2px;
+`;
+
+const TextHighlight = styled.span`
+  color: #4db5ff;
+  font-weight: 700;
+`;
+
 const Note = styled.div`
   background: rgba(255, 193, 7, 0.1);
   border: 1px solid rgba(255, 193, 7, 0.3);
@@ -132,8 +155,40 @@ const ProjectCard: FC<ProjectData> = ({
   note,
 }) => {
   const GithubIcon = FaGithub as any;
+  const GitlabIcon = FaGitlab as any;
   const ExternalLinkIcon = FaExternalLinkAlt as any;
   const InfoIcon = FaInfoCircle as any;
+
+  const isGitLab =
+    project?.site === "GITLAB" || project?.url?.includes("gitlab.com");
+  const SourceIcon = isGitLab ? GitlabIcon : GithubIcon;
+  const sourceTitle = isGitLab
+    ? "View Source on GitLab"
+    : "View Source on GitHub";
+
+  const parsedDescription = useMemo(() => {
+    // Split first by backticks
+    const backtickParts = desciption.split(/`([^`]+)`/g);
+
+    return backtickParts.flatMap((part, index) => {
+      if (index % 2 === 1) {
+        return <CodeHighlight key={`code-${index}`}>{part}</CodeHighlight>;
+      }
+
+      // If it's normal text, split by double and single quotes
+      const quoteParts = part.split(/["']([^"']+)["']/g);
+      return quoteParts.map((qPart, qIndex) => {
+        if (qIndex % 2 === 1) {
+          return (
+            <TextHighlight key={`text-${index}-${qIndex}`}>
+              {qPart}
+            </TextHighlight>
+          );
+        }
+        return qPart;
+      });
+    });
+  }, [desciption]);
 
   return (
     <Card>
@@ -144,27 +199,19 @@ const ProjectCard: FC<ProjectData> = ({
         </div>
         <Links>
           {project?.url && (
-            <LinkIcon
-              href={project.url}
-              target="_blank"
-              title="View Source on GitHub"
-            >
-              <GithubIcon />
+            <LinkIcon href={project.url} target="_blank" title={sourceTitle}>
+              <SourceIcon />
             </LinkIcon>
           )}
           {hosted?.url && hosted.url !== "#" && (
-            <LinkIcon
-              href={hosted.url}
-              target="_blank"
-              title="View Live Demo"
-            >
+            <LinkIcon href={hosted.url} target="_blank" title="View Live Demo">
               <ExternalLinkIcon size={16} />
             </LinkIcon>
           )}
         </Links>
       </Header>
 
-      <Description>{desciption}</Description>
+      <Description>{parsedDescription}</Description>
 
       {note && (
         <Note>

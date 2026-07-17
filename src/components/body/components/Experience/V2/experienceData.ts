@@ -18,16 +18,19 @@ export const experienceList: ExperienceData[] = [
     "role": "Software Developer II",
     "type": "Full Stack",
     "startDate": "07/2024",
-    "endDate": "Present",
+    "endDate": "06/2026",
     "location": "Chennai, India",
     "website": "https://rootquotient.com/",
     "description": "Rootquotient is a product engineering company that helps businesses build digital solutions.",
     "responsibilities": [
-      "Architected optimised CI/CD pipelines (Github Action, Azure DevOps and AWS) across Organization; enabled zero-downtime deploy with artifacts.",
-      "Established real-time & performance best practices (Optimization, Code Splitting, Lazy Loading, Web Vital and WCAG/A11Y) adopted by 3+ teams org-wide.",
-      "Achieved 99.8% uptime; managed 10K+ concurrent users efficiently.",
-      "Mentored 5+ developers; achieved 3 SDE1 and 2 SDE2 promotions; improved velocity by 35%.",
-      "Conducted 5+ tech interviews; hired 2 engineers; established evaluation framework."
+      "Architected a scalable WebSocket-based communication platform for incident management, enabling live messaging, dashboards, and Google Maps route synchronization while reducing update latency by 25%.",
+      "Built reusable responsive UI component libraries using Shadcn and Tailwind CSS, adopted across 2+ fintech loan platforms, reducing design effort by 40% and improving UI consistency.",
+      "Automated release engineering by implementing CI/CD pipelines with Azure DevOps, AWS, automated testing, GitLeaks scanning, and artifact versioning, reducing release cycles by 20–30%.",
+      "Improved performance for data-intensive views rendering 50K+ records using memoization, virtualization, incremental loading, lazy loading, and code splitting, reducing initial render time and improving runtime responsiveness by 20–45%.",
+      "Developed a shared React component library adopted across 3+ enterprise applications, reducing duplicate code by 30% and accelerating feature delivery by 20%.",
+      "Implemented a service worker-based update mechanism that detects new deployments and prompts users to refresh, reducing stale-client issues and increasing latest-version adoption by 30%.",
+      "Built a modular rich-text editor shared across 5 applications and integrated Razorpay using secure token-based authentication, supporting 59K+ monthly transactions.",
+      "Implemented MSAL (Microsoft Entra ID) authentication and React Query persistence (offline cache), enabling secure authentication, offline-first data access, and seamless user sessions across enterprise applications."
     ]
   },
   {
@@ -40,10 +43,10 @@ export const experienceList: ExperienceData[] = [
     "website": "https://rootquotient.com/",
     "description": "Rootquotient is a product engineering company that helps businesses build digital solutions.",
     "responsibilities": [
-      "Drove state management & API integration strategies across 2+ projects.",
-      "Led peer reviews establishing React best practices; configured ESLint + Prettier and Git hooks reducing review cycles by 35%.",
-      "Identified bottlenecks; coached team on profiling tools and optimization.",
-      "Coordinated with product/design on technical feasibility; maintained 100% on-time sprint delivery."
+      "Built a high-performance React search and filtering system with debouncing, pagination, and dynamic filters, improving search efficiency by 15% while reducing backend load by 20%.",
+      "Developed a role-based coupon management platform with secure creation, distribution, and redemption workflows, increasing campaign conversions by 15%.",
+      "Built a modular React admin dashboard using Ant Design and Chart.js for analytics, user management, and role-based access control, reducing manual administrative effort and report generation time by 30%.",
+      "Improved developer productivity by creating a reusable React boilerplate with shared configurations, testing, Git hooks, CI integration, and scalable project architecture, reducing project setup time by 40%."
     ]
   },
   {
@@ -56,11 +59,9 @@ export const experienceList: ExperienceData[] = [
     website: "https://innovaccer.com/",
     description: `It is a health cloud company dedicated to accelerating innovation in healthcare to connect and curate the world's healthcare information.`,
     responsibilities: [
-      "Develop and ship highly interactive web applications for Incare which is one of the biggest revenue-generating products of Innovacccer.",
-      "Develop and Contribute generic, most frequently used by customers components to their common libraries, those are used in their application.",
-      "Worked with a variety of different languages, and frameworks such as TypeScript, ReactJS, Redux, Node.js, etc.",
-      "Tested many functionalities via Jest (for unit-testing), Enzyme (for component testing), and Cypress (for end-to-end testing).",
-      "Communicate & collaborate with various teams of engineers, and designers on a regular basis and recently attended many client calls.",
+      "Developed reusable, highly configurable Custom dropdown components with multi-select, infinite scrolling, search, clear/reset behavior, and end-to-end test coverage, adopted across 3+ healthcare products serving 3.5M+ users.",
+      "Achieved 54% to 87% test coverage and reduced post-release defects by 20%.",
+      "Worked with cross-functional teams (design/backend/mobile/product) across 3+ products, participating in sprint planning and quality assurance."
     ],
   },
   {
