@@ -201,4 +201,94 @@ const SubmitButton = styled.button`
   }
 `;
 
-export { Container, FormWrapper, Input, InputGroup, IconWrapper, Row, SubmitButton, Title, TextArea };
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+`;
+
+const ModalCard = styled.div`
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px 40px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(77, 181, 255, 0.15);
+  transform: translateZ(50px);
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  @keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+`;
+
+const ModalTextTitle = styled.h3`
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+`;
+
+const ModalMessage = styled.p`
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+`;
+
+const ModalButton = styled.button`
+  padding: 10px 30px;
+  background: linear-gradient(45deg, #4db5ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 114, 255, 0.3);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 114, 255, 0.41);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+
+export {
+  Container,
+  FormWrapper,
+  Input,
+  InputGroup,
+  IconWrapper,
+  Row,
+  SubmitButton,
+  Title,
+  TextArea,
+  ModalOverlay,
+  ModalCard,
+  ModalTextTitle,
+  ModalMessage,
+  ModalButton
+};
